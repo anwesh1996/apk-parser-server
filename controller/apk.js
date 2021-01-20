@@ -64,7 +64,7 @@ let getAll = async (data) => {
             let skip = data.pageNo ? parseInt(data.pageNo - 1) * limit : 0
             apks = await app.db.models.Apk.find({},{manifest:0}).skip(skip).limit(limit).lean()
         } else {
-            apks = await app.db.models.Apk.find({},{manifest:0}).lean()
+            apks = await app.db.models.Apk.find({},{manifest:0}).sort({_id:-1}).lean()
         }
         return apks;
     }
